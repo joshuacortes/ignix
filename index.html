@@ -3,29 +3,33 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <script>
+    window.addEventListener("beforeunload", function () {
+  document.body.classList.add("animate-out");
+});
+  </script>
+<style>
+  .animate-in {
+    -webkit-animation: fadeIn .5s ease-in;
+    animation: fadeIn .5s ease-in;
+}
 
-  <script type="text/javascript"> 
-        var opacity = 0; 
-        var intervalID = 0; 
-        window.onload = fadeIn; 
-          
-        function fadeIn() { 
-            setInterval(show, 200); 
-        } 
-          
-        function show() { 
-            var body = document.getElementById("body"); 
-            opacity = Number(window.getComputedStyle(body) 
-                            .getPropertyValue("opacity")); 
-            if (opacity < 1) { 
-                opacity = opacity + 0.1; 
-                body.style.opacity = opacity 
-            } else { 
-                clearInterval(intervalID); 
-            } 
-        } 
-    </script> 
+.animate-out {
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+    opacity: 0;
+}
 
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+  </style>
 
   
   <style>
@@ -63,7 +67,7 @@
 
 
 </head>
-<body>
+<body class="animate-in">
 <video autoplay loop muted playsinline id="myVideo">
   <source src="https://joshuacortes.github.io/ignix/ignix-bg.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
