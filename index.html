@@ -3,17 +3,53 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  
+  <script type="text/javascript">
+	$(document).ready(function() {
+		$("#content").css("display", "none");
+		$("#content").fadeIn(1000);
+		$("a.transition").click(function(event){
+			event.preventDefault();
+			linkLocation = this.href;
+			$("#content").fadeOut(1000, redirectPage);		
+		});
+		function redirectPage() {
+			window.location = linkLocation;
+		}
+	});
+</script>
   
   <style>
 
-    
+   body {
+     max-height:100%;
+    background-color:#242424;
+    padding:0;
+    margin:0;
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+
+        h1 {
+            color: green;
+        }
+
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
       
-  html, body {
+  html{
     max-height:100%;
     background-color:#242424;
     padding:0;
     margin:0;
+    
 }
     
     
@@ -40,7 +76,7 @@
 
 
 </head>
-<body>
+<body onload="document.body.style.opacity='1'">
 <video autoplay loop muted playsinline id="myVideo">
   <source src="https://joshuacortes.github.io/ignix/ignix-bg.mp4" type="video/mp4">
   Your browser does not support HTML5 video.
